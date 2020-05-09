@@ -158,8 +158,6 @@ public class MensajeSocket implements Serializable {
 	 * 
 	 * @param login
 	 *            login del usuario
-	 * @param password
-	 *            password del usuario
 	 * @param contenido
 	 *            Texto descriptivo del tipo de mensaje
 	 * @param tipoMensaje

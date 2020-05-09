@@ -11,16 +11,36 @@ public class DHCPSocketClient {
 	private InetAddress ip;
 	private int portNumber;
 
+	/**
+	 * Clase para comunicarse con el servidor
+	 * 
+	 * @param ip         IP del servidor donde esta corriendo DHCPManagerMultiServer
+	 * @param portNumber Puerto por donde se escuchan las peticiones
+	 */
 	public DHCPSocketClient(InetAddress ip, int portNumber) {
 		super();
 		this.ip = ip;
 		this.portNumber = portNumber;
 	}
-	
-	public static String send(InetAddress ip, int port, String mensaje, int tipoMensaje, String usuario) throws HeadlessException, ClassNotFoundException, IOException {
-		
-		DHCPSocketClient sc = new DHCPSocketClient(ip,port);
-		
+
+	/**
+	 * Envio de mensajes. Vease MensajeSocket
+	 * 
+	 * @param ip          IP del servidor
+	 * @param port        Puerto por donde escucha el servidor.
+	 * @param mensaje     Mensaje a enviar
+	 * @param tipoMensaje Tipo de mensaje. Vease MensajeSocket
+	 * @param usuario     UID del usuario que lo envia
+	 * @return Texto recibido del servidor.
+	 * @throws HeadlessException
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 */
+	public static String send(InetAddress ip, int port, String mensaje, int tipoMensaje, String usuario)
+			throws HeadlessException, ClassNotFoundException, IOException {
+
+		DHCPSocketClient sc = new DHCPSocketClient(ip, port);
+
 		if (ip.isReachable(3000)) {
 
 			MensajeSocket m = sc.sendMessage(new MensajeSocket(mensaje, tipoMensaje, usuario));
@@ -28,14 +48,25 @@ public class DHCPSocketClient {
 			if (m != null) {
 				return m.getContenido();
 			}
-			
+
 		} else {
 			throw new IOException("El host " + ip.getHostAddress() + " no es alcanzable");
 		}
 		return null;
 	}
 
-	public String send(String mensaje, int tipoMensaje, String usuario) throws HeadlessException, ClassNotFoundException, IOException {
+	/**
+	 * 
+	 * @param mensaje     Mensaje a enviar
+	 * @param tipoMensaje Tipo de mensaje. Vease MensajeSocket
+	 * @param usuario     UID del usuario que lo envia
+	 * @return Texto recibido del servidor.
+	 * @throws HeadlessException
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 */
+	public String send(String mensaje, int tipoMensaje, String usuario)
+			throws HeadlessException, ClassNotFoundException, IOException {
 
 		if (ip.isReachable(3000)) {
 
@@ -44,7 +75,7 @@ public class DHCPSocketClient {
 			if (m != null) {
 				return m.getContenido();
 			}
-			
+
 		} else {
 			throw new IOException("El host " + ip.getHostAddress() + " no es alcanzable");
 		}

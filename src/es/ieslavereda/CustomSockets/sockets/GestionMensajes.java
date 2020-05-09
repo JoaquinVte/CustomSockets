@@ -8,11 +8,10 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class GestionMensajes {
 
 	public MensajeSocket processInput(MensajeSocket m) {
-		
+
 		MensajeSocket mContestacion = null;
 		String login = m.getLogin();
 
@@ -136,7 +135,8 @@ public class GestionMensajes {
 			} else {
 				// Enviamos la salida de la grabacion si el usuario se loga y
 				// tiene
-				mContestacion = new MensajeSocket(grabarFicheroDHCP(m.getContenido()), MensajeSocket.ENVIO_SALIDA_UPLOAD);
+				mContestacion = new MensajeSocket(grabarFicheroDHCP(m.getContenido()),
+						MensajeSocket.ENVIO_SALIDA_UPLOAD);
 			}
 
 			break;
@@ -235,29 +235,41 @@ public class GestionMensajes {
 
 		return salida;
 	}
-	
-	
-	public boolean usuarioValido(String login,String passwd) {
 
-		boolean esValido=true;
-		
+	/**
+	 * Simpre devuelve true
+	 * 
+	 * @param login
+	 * @param passwd
+	 * @return
+	 */
+	public boolean usuarioValido(String login, String passwd) {
+
+		boolean esValido = true;
+
 		// Descomentar si queremos comprobar con LDAP
 //		LDAP l = new LDAP();
 //		return l.autenticacionLDAP(login, passwd);
-		
+
 		return esValido;
 	}
 
+	/**
+	 * Simpre devuelve true
+	 * 
+	 * @param login
+	 * @return
+	 */
 	public boolean usuarioValido(String login) {
 
-		boolean esValido=true;
-		
+		boolean esValido = true;
+
 		// Descomentar si queremos comprobar con LDAP
 //		LDAP l = new LDAP();
 //		ConfiguracionSegura conf = new ConfiguracionSegura();
 //		esValido = l.search("cn=" + conf.getGroupOtrs() + ",ou=Groups", "memberUid=" + login)
 //				|| l.search("cn=" + conf.getGroupWithAllRights() + ",ou=Groups", "memberUid=" + login);
-		
+
 		return esValido;
 	}
 }

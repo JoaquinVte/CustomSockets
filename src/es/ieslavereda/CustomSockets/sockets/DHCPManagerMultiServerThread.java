@@ -8,17 +8,24 @@ import java.io.*;
 public class DHCPManagerMultiServerThread extends Thread {
 	private Socket socket = null;
 
+	/**
+	 * Thread para atender las peticiones
+	 * 
+	 * @param socket Socket de la conexion
+	 */
 	public DHCPManagerMultiServerThread(Socket socket) {
 		super("KKMultiServerThread");
 		this.socket = socket;
 	}
 
+	@Override
 	public void run() {
-		
+
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-uuuu H:m:s");
 		String instante = LocalDateTime.now().format(formatter);
-		
-		System.out.println(instante + " -> Conexion realizada desde la IP " + socket.getRemoteSocketAddress().toString());
+
+		System.out
+				.println(instante + " -> Conexion realizada desde la IP " + socket.getRemoteSocketAddress().toString());
 		try (
 
 				ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
@@ -38,7 +45,8 @@ public class DHCPManagerMultiServerThread extends Thread {
 				}
 				mensajeSalida = gm.processInput(mensajeRecibido);
 				int tipo = mensajeSalida.getTipoMensaje();
-				boolean demasidoLargo = (tipo == MensajeSocket.ENVIO_DHCP_CONF || tipo == MensajeSocket.ENVIO_JOURNALCTL);
+				boolean demasidoLargo = (tipo == MensajeSocket.ENVIO_DHCP_CONF
+						|| tipo == MensajeSocket.ENVIO_JOURNALCTL);
 				System.out.println("Enviando el mensaje: "
 						+ ((demasidoLargo) ? "Demasiados datos para mostrar .... datos omitidos" : mensajeSalida));
 
