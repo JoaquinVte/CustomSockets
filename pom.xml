@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.JoaquinVte</groupId>
 	<artifactId>custom-sockets</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0-SANPSHOT</version>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
