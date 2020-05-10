@@ -247,7 +247,7 @@ public class GestionMensajes {
 	 * 
 	 * @param login  Login del usuario
 	 * @param passwd Password del usuario
-	 * @return
+	 * @return Siempre devuelve true
 	 */
 	public boolean usuarioValido(String login, String passwd) {
 

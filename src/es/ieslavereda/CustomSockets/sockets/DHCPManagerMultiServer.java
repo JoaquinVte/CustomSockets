@@ -18,8 +18,8 @@ public class DHCPManagerMultiServer {
 	 * Ejecutable para el servidor. Si no se pasa parametro de puerto, este empezara
 	 * a escuchar por el puerto 1977
 	 * 
-	 * @param args
-	 * @throws IOException
+	 * @param args Opcional. Puerto por el que desamos que escuche el ServerSocket 
+	 * @throws IOException Normalmente el puerto ya esta en uso
 	 */
 	public static void main(String[] args) throws IOException {
 
