@@ -6,6 +6,12 @@ import java.net.*;
 
 import javax.swing.JOptionPane;
 
+/**
+ * Clase para el envio de mensajes al servidor
+ * 
+ * @author joaalsai
+ *
+ */
 public class DHCPSocketClient {
 
 	private InetAddress ip;
@@ -32,12 +38,10 @@ public class DHCPSocketClient {
 	 * @param tipoMensaje Tipo de mensaje. Vease MensajeSocket
 	 * @param usuario     UID del usuario que lo envia
 	 * @return Texto recibido del servidor.
-	 * @throws HeadlessException
-	 * @throws ClassNotFoundException
-	 * @throws IOException
+	 * @throws Exception Lanzamiento de otro tipo de excepcion de usuario
 	 */
 	public static String send(InetAddress ip, int port, String mensaje, int tipoMensaje, String usuario)
-			throws HeadlessException, ClassNotFoundException, IOException {
+			throws Exception {
 
 		DHCPSocketClient sc = new DHCPSocketClient(ip, port);
 
@@ -61,12 +65,15 @@ public class DHCPSocketClient {
 	 * @param tipoMensaje Tipo de mensaje. Vease MensajeSocket
 	 * @param usuario     UID del usuario que lo envia
 	 * @return Texto recibido del servidor.
-	 * @throws HeadlessException
-	 * @throws ClassNotFoundException
-	 * @throws IOException
+	 * @throws ClassNotFoundException Lanzamiento de una excepcion si lo que se
+	 *                                envia no es un MensajeSocket
+	 * @throws Exception              Lanzamiento de otro tipo de excepcion de
+	 *                                usuario
+	 * @throws IOException            Lanzamiento de una excepcion principalmente si
+	 *                                el host no es alcanzable
 	 */
 	public String send(String mensaje, int tipoMensaje, String usuario)
-			throws HeadlessException, ClassNotFoundException, IOException {
+			throws HeadlessException, ClassNotFoundException, IOException, Exception {
 
 		if (ip.isReachable(3000)) {
 
@@ -82,7 +89,7 @@ public class DHCPSocketClient {
 		return null;
 	}
 
-	private MensajeSocket sendMessage(MensajeSocket m) throws IOException, HeadlessException, ClassNotFoundException {
+	private MensajeSocket sendMessage(MensajeSocket m) throws IOException, ClassNotFoundException, Exception {
 
 		MensajeSocket respuesta = null;
 
@@ -114,13 +121,9 @@ public class DHCPSocketClient {
 					break;
 
 				case (MensajeSocket.USUARIO_O_PASSWD_NO_VALIDO):
-					JOptionPane.showMessageDialog(null, "Usuario o password no valido", "Error",
-							JOptionPane.ERROR_MESSAGE, null);
-					break;
+					throw new Exception("Usuario o password no valido");
 				case (MensajeSocket.USUARIO_SIN_PRIVILEGIOS):
-					JOptionPane.showMessageDialog(null, "El usuario no tiene los privilegios necesarios.", "Error",
-							JOptionPane.ERROR_MESSAGE, null);
-					break;
+					throw new Exception("El usuario no tiene los privilegios necesarios.");
 				case (MensajeSocket.ENVIO_DHCP_CONF):
 				case (MensajeSocket.ENVIO_SALIDA_RESTART_DHCP):
 				case (MensajeSocket.ENVIO_DHCP_STATUS):

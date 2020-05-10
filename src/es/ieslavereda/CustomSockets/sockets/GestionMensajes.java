@@ -8,6 +8,12 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Clase que gestiona los mensajes que se reciben en el servidor.
+ * 
+ * @author joaalsai
+ *
+ */
 public class GestionMensajes {
 
 	public MensajeSocket processInput(MensajeSocket m) {
@@ -237,10 +243,10 @@ public class GestionMensajes {
 	}
 
 	/**
-	 * Simpre devuelve true
+	 * Valida al usario mediante LDAP. Para este proyecto siempre devuelve true
 	 * 
-	 * @param login
-	 * @param passwd
+	 * @param login  Login del usuario
+	 * @param passwd Password del usuario
 	 * @return
 	 */
 	public boolean usuarioValido(String login, String passwd) {
@@ -255,10 +261,11 @@ public class GestionMensajes {
 	}
 
 	/**
-	 * Simpre devuelve true
+	 * Clase destinada a saber si el usuario tiene los permisos necesarios para
+	 * realizar la accion mediante LDAP. Para este proyecto siempre devuelve true
 	 * 
-	 * @param login
-	 * @return
+	 * @param login login del usuario
+	 * @return Siempre devuelve true
 	 */
 	public boolean usuarioValido(String login) {
 

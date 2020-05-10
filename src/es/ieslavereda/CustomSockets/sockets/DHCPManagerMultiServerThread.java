@@ -5,6 +5,12 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.io.*;
 
+/**
+ * Thread que se ejecutara ante una peticion al servidor.
+ * 
+ * @author joaalsai
+ *
+ */
 public class DHCPManagerMultiServerThread extends Thread {
 	private Socket socket = null;
 

@@ -4,6 +4,12 @@ import java.net.*;
 
 import java.io.*;
 
+/**
+ * Gestor de peticiones multihilo para el lado del servidor
+ * 
+ * @author joaalsai
+ *
+ */
 public class DHCPManagerMultiServer {
 
 	private static int conexionesActivas = 0;
