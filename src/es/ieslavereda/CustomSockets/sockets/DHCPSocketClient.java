@@ -1,10 +1,7 @@
 package es.ieslavereda.CustomSockets.sockets;
 
-import java.awt.HeadlessException;
 import java.io.*;
 import java.net.*;
-
-import javax.swing.JOptionPane;
 
 /**
  * Clase para el envio de mensajes al servidor
@@ -73,7 +70,7 @@ public class DHCPSocketClient {
 	 *                                el host no es alcanzable
 	 */
 	public String send(String mensaje, int tipoMensaje, String usuario)
-			throws HeadlessException, ClassNotFoundException, IOException, Exception {
+			throws ClassNotFoundException, IOException, Exception {
 
 		if (ip.isReachable(3000)) {
 
